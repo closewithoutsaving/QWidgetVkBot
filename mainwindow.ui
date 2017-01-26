@@ -20,7 +20,7 @@
       <x>10</x>
       <y>0</y>
       <width>531</width>
-      <height>381</height>
+      <height>311</height>
      </rect>
     </property>
    </widget>
@@ -48,6 +48,45 @@
     </property>
     <property name="text">
      <string>Stop Bot</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushClearLog">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>280</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear Log</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushSetToken">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>340</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set Token</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineToken">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>340</y>
+      <width>531</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>https://oauth.vk.com/authorize?client_id=5512525&amp;display=page&amp;redirect_uri=https://oauth.vk.com/authorize&amp;scope=messages,video,docs,offline&amp;response_type=token&amp;v=5.57</string>
     </property>
    </widget>
   </widget>

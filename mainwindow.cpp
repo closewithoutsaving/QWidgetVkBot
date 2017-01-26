@@ -43,3 +43,14 @@ void MainWindow::on_pushStopBot_clicked()
     }
 
 }
+
+void MainWindow::on_pushClearLog_clicked()
+{
+    ui->listLog->clear();
+}
+
+void MainWindow::on_pushSetToken_clicked()
+{
+    Variables::token = ui->lineToken->text();
+    ui->listLog->addItem("token has been changed");
+}

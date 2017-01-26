@@ -5,6 +5,7 @@
 
 #include <QThreadPool>
 #include <QListWidget>
+#include <QLineEdit>
 
 #include <vkbotthread.h>
 
@@ -24,6 +25,10 @@ private slots:
     void on_pushStartBot_clicked();
 
     void on_pushStopBot_clicked();
+
+    void on_pushClearLog_clicked();
+
+    void on_pushSetToken_clicked();
 
 private:
     Ui::MainWindow *ui;
