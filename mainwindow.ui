@@ -6,109 +6,126 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>707</width>
-    <height>449</height>
+    <width>863</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Control panel</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QListWidget" name="listLog">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
-      <width>531</width>
-      <height>311</height>
+      <y>9</y>
+      <width>841</width>
+      <height>451</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QPushButton" name="pushStartBot">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>10</y>
-      <width>88</width>
-      <height>34</height>
-     </rect>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-    <property name="text">
-     <string>Start Bot</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushStopBot">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>70</y>
-      <width>88</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop Bot</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushClearLog">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>280</y>
-      <width>88</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clear Log</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushSetToken">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>340</y>
-      <width>88</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Set Token</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineToken">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>340</y>
-      <width>531</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>https://oauth.vk.com/authorize?client_id=5512525&amp;display=page&amp;redirect_uri=https://oauth.vk.com/authorize&amp;scope=messages,video,docs,offline&amp;response_type=token&amp;v=5.57</string>
-    </property>
+    <widget class="QWidget" name="tabVkBot">
+     <attribute name="title">
+      <string>Vk Bot</string>
+     </attribute>
+     <widget class="QListWidget" name="listLog">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>571</width>
+        <height>351</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushClearLog">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>60</y>
+        <width>88</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear Log</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushStartBot">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>10</y>
+        <width>88</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Bot</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushStopBot">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>10</y>
+        <width>88</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop Bot</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>370</y>
+        <width>111</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Program login</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineToken">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>370</y>
+        <width>571</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>https://oauth.vk.com/authorize?client_id=5512525&amp;display=page&amp;redirect_uri=https://oauth.vk.com/authorize&amp;scope=messages,video,docs,offline&amp;response_type=token&amp;v=5.57</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushSetToken">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>370</y>
+        <width>88</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Set Token</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Sound Cloud</string>
+     </attribute>
+    </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>707</width>
-     <height>30</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

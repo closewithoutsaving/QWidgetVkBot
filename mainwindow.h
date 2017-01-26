@@ -30,9 +30,11 @@ private slots:
 
     void on_pushSetToken_clicked();
 
+    void on_pushButton_clicked();
+
 private:
-    Ui::MainWindow *ui;
     VkBotThread* botThread;
+    Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H

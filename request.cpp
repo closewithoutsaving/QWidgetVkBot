@@ -138,10 +138,13 @@ void Request::sendMessageWithAttachment(QString attachment, QString message)
     eventLoop.exec();
 
     if (reply->error() == QNetworkReply::NoError)
+    {
         qDebug() << reply->readAll();
-
+    }
     else
+    {
         qDebug() << reply->errorString();
+    }
 
     delete reply;
 }

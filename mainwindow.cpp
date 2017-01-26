@@ -54,3 +54,8 @@ void MainWindow::on_pushSetToken_clicked()
     Variables::token = ui->lineToken->text();
     ui->listLog->addItem("token has been changed");
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    Variables::token = "50075c27a07c3007e31c9e0269d5d7ae2875fa7c950b86c34f46409cd487270885dd874ca629136e60521";
+}
