@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,8 +24,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    vkbotthread.cpp \
+    request.cpp \
+    video.cpp \
+    doc.cpp \
+    gif.cpp \
+    parser.cpp \
+    variables.cpp \
+    controller.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    vkbotthread.h \
+    request.h \
+    video.h \
+    doc.h \
+    gif.h \
+    parser.h \
+    variables.h \
+    controller.h
 
 FORMS    += mainwindow.ui
