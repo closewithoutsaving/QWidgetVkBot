@@ -5,13 +5,19 @@ VkBotThread::VkBotThread()
 
 }
 
+bool VkBotThread::isSuspended = true;
+
 void VkBotThread::run()
 {
     Request request;
 
     while (true)
     {
-        request.messagesGetDialogs();
+        if(!isSuspended)
+        {
+            request.messagesGetDialogs();
+            qDebug() << "bot thread";
+        }
 
         QThread::sleep(3);
     }

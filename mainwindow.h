@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 
+#include <QThreadPool>
+#include <QListWidget>
+
+#include <vkbotthread.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,6 +27,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    VkBotThread* botThread;
 };
 
 #endif // MAINWINDOW_H
