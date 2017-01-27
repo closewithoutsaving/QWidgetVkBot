@@ -40,6 +40,7 @@ void MainWindow::on_pushStopBot_clicked()
     if (!VkBotThread::isSuspended)
     {
         VkBotThread::isSuspended = true;
+        ui->listLog->addItem("bot thread stoped");
     }
 
 }
@@ -47,6 +48,7 @@ void MainWindow::on_pushStopBot_clicked()
 void MainWindow::on_pushClearLog_clicked()
 {
     ui->listLog->clear();
+    ui->listLog->addItem("log cleared");
 }
 
 void MainWindow::on_pushSetToken_clicked()
