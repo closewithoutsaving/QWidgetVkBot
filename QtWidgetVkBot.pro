@@ -27,21 +27,23 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     vkbotthread.cpp \
     request.cpp \
-    video.cpp \
-    doc.cpp \
-    gif.cpp \
+    VkModules/video.cpp \
+    VkModules/doc.cpp \
+    VkModules/gif.cpp \
     parser.cpp \
     variables.cpp \
-    controller.cpp
+    controller.cpp \
+    downloader.cpp
 
 HEADERS  += mainwindow.h \
     vkbotthread.h \
     request.h \
-    video.h \
-    doc.h \
-    gif.h \
+    VkModules/video.h \
+    VkModules/doc.h \
+    VkModules/gif.h \
     parser.h \
     variables.h \
-    controller.h
+    controller.h \
+    downloader.h
 
 FORMS    += mainwindow.ui

@@ -2,9 +2,9 @@
 #define PARSER_H
 
 #include "request.h"
-#include "video.h"
-#include "doc.h"
-#include "gif.h"
+#include "VkModules/video.h"
+#include "VkModules/doc.h"
+#include "VkModules/gif.h"
 
 class Parser
 {

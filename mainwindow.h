@@ -6,8 +6,10 @@
 #include <QThreadPool>
 #include <QListWidget>
 #include <QLineEdit>
+#include <QFileDialog>
 
-#include <vkbotthread.h>
+#include "vkbotthread.h"
+#include "downloader.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,9 +34,19 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushDownload_clicked();
+
+    void on_pushSelectPath_clicked();
+
 private:
     VkBotThread* botThread;
+    Downloader* down;
     Ui::MainWindow *ui;
+
+    QString url;
+    QString path;
+    QString name;
+    QString type;
 };
 
 #endif // MAINWINDOW_H

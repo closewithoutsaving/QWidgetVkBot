@@ -7,12 +7,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     botThread = new VkBotThread();
+    down = new Downloader();
     QThreadPool::globalInstance()->start(botThread);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete botThread;
+    delete down;
 }
 
 void MainWindow::on_pushStartBot_clicked()
@@ -59,5 +62,53 @@ void MainWindow::on_pushSetToken_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    Variables::token = "50075c27a07c3007e31c9e0269d5d7ae2875fa7c950b86c34f46409cd487270885dd874ca629136e60521";
+    Variables::token = "b4ef0c44134fc818ba859b30fd102a82704b6dbe87100427b3febc25f52018e66cf3f9f2c8ba50c1d5e0d";
+}
+
+void MainWindow::on_pushDownload_clicked()
+{
+
+/*
+    examples from docs:
+    QString().isNull();               // returns true
+    QString().isEmpty();              // returns true
+
+    QString("").isNull();             // returns false
+    QString("").isEmpty();            // returns true
+
+    QString("abc").isNull();          // returns false
+    QString("abc").isEmpty();         // returns false
+*/
+
+    if(QString(path).isEmpty())
+    {
+        ui->labelProgress->text() = "error in paths";
+        return;
+    }
+
+    else
+    {
+        url = ui->lineUrl->text();
+
+        ui->labelProgress->text() = "downloading";
+        ui->labelProgress->text() = down->download(url, path);
+    }
+
+}
+
+void MainWindow::on_pushSelectPath_clicked()
+{
+
+/*
+    tr - name of window
+    3 param - which folder will be open in window
+    4 param - filter
+*/
+
+    path = QFileDialog::getOpenFileName(this, tr("Save as"), "/home/", "All files(*.*)");
+
+    qDebug() << path;
+
+    ui->labelPath->text() = path;
+
 }
