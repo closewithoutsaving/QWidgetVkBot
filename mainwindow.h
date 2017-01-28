@@ -38,6 +38,8 @@ private slots:
 
     void on_pushSelectPath_clicked();
 
+    void on_pushClearWindow_clicked();
+
 private:
     VkBotThread* botThread;
     Downloader* down;

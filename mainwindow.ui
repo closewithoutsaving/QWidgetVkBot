@@ -241,6 +241,19 @@
        <string>...</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushClearWindow">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>350</y>
+        <width>121</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear window</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">

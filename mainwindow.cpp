@@ -82,7 +82,7 @@ void MainWindow::on_pushDownload_clicked()
 
     if(QString(path).isEmpty())
     {
-        ui->labelProgress->text() = "error in paths";
+        ui->labelProgress->setText("error in paths");
         return;
     }
 
@@ -90,8 +90,8 @@ void MainWindow::on_pushDownload_clicked()
     {
         url = ui->lineUrl->text();
 
-        ui->labelProgress->text() = "downloading";
-        ui->labelProgress->text() = down->download(url, path);
+        ui->labelProgress->setText("downloading");
+        ui->labelProgress->setText(down->download(url, path));
     }
 
 }
@@ -105,10 +105,19 @@ void MainWindow::on_pushSelectPath_clicked()
     4 param - filter
 */
 
-    path = QFileDialog::getOpenFileName(this, tr("Save as"), "/home/", "All files(*.*)");
+//    path = QFileDialog::getOpenFileName(this, tr("Save as"), "/home/", "All files(*.*)");
+
+    path = QFileDialog::getSaveFileName(this, tr("Save as"), "/home/", tr("All files(*.*)"));
 
     qDebug() << path;
 
-    ui->labelPath->text() = path;
+    ui->linePath->setText(path);
 
+}
+
+void MainWindow::on_pushClearWindow_clicked()
+{
+    ui->lineUrl->setText("");
+    ui->linePath->setText("");
+    ui->labelProgress->setText("");
 }
