@@ -22,14 +22,13 @@ void MainWindow::on_pushStartBot_clicked()
 {
     if (!VkBotThread::isSuspended)
     {
+        ui->listLog->addItem("bot thread already srarted");
         return;
     }
 
-    if(VkBotThread::isSuspended)
-    {
-        VkBotThread::isSuspended = false;
-        ui->listLog->addItem("bot thread srarted");
-    }
+    VkBotThread::isSuspended = false;
+
+    ui->listLog->addItem("bot thread srarted");
 }
 
 void MainWindow::on_pushStopBot_clicked()
@@ -38,31 +37,39 @@ void MainWindow::on_pushStopBot_clicked()
     if(VkBotThread::isSuspended)
     {
         ui->listLog->addItem("already suspended");
+        return;
     }
 
-    if (!VkBotThread::isSuspended)
-    {
-        VkBotThread::isSuspended = true;
-        ui->listLog->addItem("bot thread stoped");
-    }
+    VkBotThread::isSuspended = true;
 
+    ui->listLog->addItem("bot thread stoped");
 }
 
 void MainWindow::on_pushClearLog_clicked()
 {
     ui->listLog->clear();
+
     ui->listLog->addItem("log cleared");
 }
 
 void MainWindow::on_pushSetToken_clicked()
 {
     Variables::token = ui->lineToken->text();
+
     ui->listLog->addItem("token has been changed");
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    Variables::token = "b4ef0c44134fc818ba859b30fd102a82704b6dbe87100427b3febc25f52018e66cf3f9f2c8ba50c1d5e0d";
+
+//get access token
+//https://oauth.vk.com/authorize?client_id=5512525&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=
+//messages,video,docs,offline&response_type=token&v=5.57
+
+    Variables::token = "f88413626f9923ecec6f5fdf2f6158c4d0012ce5d3ff5ec1d3823b34aedd6b28617f85c05089d23c2012d";
+
+    ui->listLog->addItem("using default token");
+
 }
 
 void MainWindow::on_pushDownload_clicked()
@@ -91,6 +98,7 @@ void MainWindow::on_pushDownload_clicked()
         url = ui->lineUrl->text();
 
         ui->labelProgress->setText("downloading");
+
         ui->labelProgress->setText(down->download(url, path));
     }
 
@@ -118,6 +126,8 @@ void MainWindow::on_pushSelectPath_clicked()
 void MainWindow::on_pushClearWindow_clicked()
 {
     ui->lineUrl->setText("");
+
     ui->linePath->setText("");
+
     ui->labelProgress->setText("");
 }
