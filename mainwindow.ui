@@ -43,7 +43,7 @@
      <widget class="QPushButton" name="pushClearLog">
       <property name="geometry">
        <rect>
-        <x>600</x>
+        <x>700</x>
         <y>60</y>
         <width>88</width>
         <height>34</height>
@@ -79,17 +79,17 @@
        <string>Stop Bot</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushCopyRequest">
       <property name="geometry">
        <rect>
-        <x>710</x>
+        <x>610</x>
         <y>370</y>
         <width>111</width>
         <height>34</height>
        </rect>
       </property>
       <property name="text">
-       <string>Program login</string>
+       <string>Copy Request</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineToken">
@@ -102,20 +102,20 @@
        </rect>
       </property>
       <property name="text">
-       <string>https://oauth.vk.com/authorize?client_id=5512525&amp;display=page&amp;redirect_uri=https://oauth.vk.com/authorize&amp;scope=messages,video,docs,offline&amp;response_type=token&amp;v=5.57</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="pushSetToken">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>730</x>
         <y>370</y>
         <width>88</width>
         <height>34</height>
        </rect>
       </property>
       <property name="text">
-       <string>Set Token</string>
+       <string>Paste Token</string>
       </property>
      </widget>
     </widget>
@@ -255,10 +255,87 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tabTime">
      <attribute name="title">
-      <string>Sound Cloud</string>
+      <string>Time</string>
      </attribute>
+     <widget class="QLabel" name="labelMoscow">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>40</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Moscow</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelMoscowTime">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>80</y>
+        <width>231</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clock</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabClipbord">
+     <attribute name="title">
+      <string>Clipboard</string>
+     </attribute>
+     <widget class="QPushButton" name="pushClipboardLogClear">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>330</y>
+        <width>80</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear log</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listClipboardLog">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>811</width>
+        <height>291</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushClipboardRemoveLast">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>330</y>
+        <width>91</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove last</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

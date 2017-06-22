@@ -83,6 +83,12 @@ void Request::messagesGetDialogs()
         QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
         QJsonObject obj1 = doc.object();
         QJsonObject obj2 = obj1["response"].toObject();
+
+        if(obj2["count"].toInt() == 0)
+        {
+            return;
+        }
+
         QJsonArray obj3 = obj2["items"].toArray();
         QJsonObject obj4 = obj3[0].toObject();
         QJsonObject obj5 = obj4["message"].toObject();

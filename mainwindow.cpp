@@ -1,14 +1,26 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "QDateTime"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    getTokenRequest = "https://oauth.vk.com/authorize?client_id=5938020&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=messages,video,docs,offline&response_type=token&v=5.57";
+
     botThread = new VkBotThread();
     down = new Downloader();
     QThreadPool::globalInstance()->start(botThread);
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(showTime()));
+    timer->start(1000);
+
+    clipboard = QApplication::clipboard();
+    connect(clipboard, SIGNAL(dataChanged()), SLOT(clipboard_changed()));
+
 }
 
 MainWindow::~MainWindow()
@@ -16,6 +28,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete botThread;
     delete down;
+    delete timer;
 }
 
 void MainWindow::on_pushStartBot_clicked()
@@ -27,7 +40,6 @@ void MainWindow::on_pushStartBot_clicked()
     }
 
     VkBotThread::isSuspended = false;
-
     ui->listLog->addItem("bot thread srarted");
 }
 
@@ -41,36 +53,32 @@ void MainWindow::on_pushStopBot_clicked()
     }
 
     VkBotThread::isSuspended = true;
-
     ui->listLog->addItem("bot thread stoped");
 }
 
 void MainWindow::on_pushClearLog_clicked()
 {
     ui->listLog->clear();
-
     ui->listLog->addItem("log cleared");
 }
 
 void MainWindow::on_pushSetToken_clicked()
 {
-    Variables::token = ui->lineToken->text();
-
-    ui->listLog->addItem("token has been changed");
+    Variables::token = this->clipboard->text();
+    qDebug() << Variables::token;
+    ui->listLog->addItem("token has been pasted");
 }
 
-void MainWindow::on_pushButton_clicked()
-{
+//void MainWindow::on_pushButton_clicked()
+//{
 
-//get access token
-//https://oauth.vk.com/authorize?client_id=5512525&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=
-//messages,video,docs,offline&response_type=token&v=5.57
+////get access token
+////https://oauth.vk.com/authorize?client_id=5512525&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=
+////messages,video,docs,offline&response_type=token&v=5.57
 
-    Variables::token = "f88413626f9923ecec6f5fdf2f6158c4d0012ce5d3ff5ec1d3823b34aedd6b28617f85c05089d23c2012d";
-
-    ui->listLog->addItem("using default token");
-
-}
+//    Variables::token = "f88413626f9923ecec6f5fdf2f6158c4d0012ce5d3ff5ec1d3823b34aedd6b28617f85c05089d23c2012d";
+//    ui->listLog->addItem("using default token");
+//}
 
 void MainWindow::on_pushDownload_clicked()
 {
@@ -92,16 +100,12 @@ void MainWindow::on_pushDownload_clicked()
         ui->labelProgress->setText("error in paths");
         return;
     }
-
     else
     {
         url = ui->lineUrl->text();
-
         ui->labelProgress->setText("downloading");
-
         ui->labelProgress->setText(down->download(url, path));
     }
-
 }
 
 void MainWindow::on_pushSelectPath_clicked()
@@ -126,8 +130,35 @@ void MainWindow::on_pushSelectPath_clicked()
 void MainWindow::on_pushClearWindow_clicked()
 {
     ui->lineUrl->setText("");
-
     ui->linePath->setText("");
-
     ui->labelProgress->setText("");
+}
+
+void MainWindow::showTime()
+{
+    QTime time = QTime::currentTime();
+    QString timeText = time.toString("hh : mm : ss");
+    ui->labelMoscowTime->setText(timeText);
+}
+
+void MainWindow::on_pushCopyRequest_clicked()
+{
+    clipboard->setText(getTokenRequest);
+    ui->listLog->addItem("token request has been copied");
+}
+
+void MainWindow::clipboard_changed()
+{
+    ui->listClipboardLog->addItem(clipboard->text());
+}
+
+void MainWindow::on_pushClipboardLogClear_clicked()
+{
+    ui->listClipboardLog->clear();
+}
+
+void MainWindow::on_pushClipboardRemoveLast_clicked()
+{
+    int count = ui->listClipboardLog->count();
+    ui->listClipboardLog->removeItemWidget(ui->listClipboardLog->currentItem());
 }

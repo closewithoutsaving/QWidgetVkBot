@@ -7,6 +7,8 @@
 #include <QListWidget>
 #include <QLineEdit>
 #include <QFileDialog>
+#include <QTimer>
+#include <QClipboard>
 
 #include "vkbotthread.h"
 #include "downloader.h"
@@ -32,7 +34,7 @@ private slots:
 
     void on_pushSetToken_clicked();
 
-    void on_pushButton_clicked();
+//    void on_pushButton_clicked();
 
     void on_pushDownload_clicked();
 
@@ -40,15 +42,28 @@ private slots:
 
     void on_pushClearWindow_clicked();
 
+    void showTime();
+
+    void on_pushCopyRequest_clicked();
+
+    void on_pushClipboardLogClear_clicked();
+
+    void clipboard_changed();
+
+    void on_pushClipboardRemoveLast_clicked();
+
 private:
     VkBotThread* botThread;
     Downloader* down;
     Ui::MainWindow *ui;
+    QTimer *timer;
+    QClipboard *clipboard;
 
     QString url;
     QString path;
     QString name;
     QString type;
+    QString getTokenRequest;
 };
 
 #endif // MAINWINDOW_H
