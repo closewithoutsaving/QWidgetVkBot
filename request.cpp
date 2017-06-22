@@ -123,296 +123,296 @@ void Request::messagesGetDialogs()
 
 }
 
-void Request::sendMessageWithAttachment(QString attachment, QString message)
-{
-    if (message.contains(""))
-        message = message.replace(" ", "+");
-
-    QEventLoop eventLoop;
-    QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-
-    QUrl u = QUrl("https://api.vk.com/method/messages.send?&random_id=" + QString::number(Variables::getRandom())
-                  + "&peer_id=" + QString::number(Controller::peer_id_second_thread)
-                  + "&message=" + message
-                  + "&attachment=" + attachment
-                  + "&access_token=" + Variables::token
-                  + "&v=5.57");
-
-    QNetworkRequest req( u );
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec();
-
-    if (reply->error() == QNetworkReply::NoError)
-    {
-        qDebug() << reply->readAll();
-    }
-    else
-    {
-        qDebug() << reply->errorString();
-    }
-
-    delete reply;
-}
-
-void Request::adultVideoSearch(QString video)
-{
-    QEventLoop eventLoop;
-    QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-
-    QUrl u = QUrl("https://api.vk.com/method/video.search?q=" + video
-                  + "&auto_complete=1"
-                  + "&sort=2"
-                  + "&adult=1"
-                  + "&count=10"
-                  + "&access_token=" + Variables::token
-                  + "&v=5.57");
-
-    QNetworkRequest req( u );
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec();
-
-    if (reply->error() == QNetworkReply::NoError) {
-
-        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-        QJsonObject obj1 = doc.object();
-        QJsonObject obj2 = obj1["response"].toObject();
-        QJsonArray obj3 = obj2["items"].toArray();
-
-        int count = obj3.size();
-        long musics[count][2];
-        QString attachment = "";
-
-        for(int i = 0; i < count; i++)
-        {
-            QJsonObject obj4 = obj3[i].toObject();
-
-            attachment.append("video");
-
-            musics[i][0] = obj4["owner_id"].toDouble();
-
-            attachment.append(QString::number(musics[i][0]));
-            attachment.append("_");
-
-            musics[i][1] = obj4["id"].toDouble();
-
-            attachment.append(QString::number(musics[i][1]));
-            attachment.append(",");
-        }
-
-        QString message = "По вашему запросу \'" + video + "\' найдено " + QString::number(count) + " видео";
-        Request::sendMessageWithAttachment(attachment, message);
-    }
-
-    else
-    {
-        qDebug() << "Fail to send message with video attachment";
-    }
+//void Request::sendMessageWithAttachment(QString attachment, QString message)
+//{
+//    if (message.contains(""))
+//        message = message.replace(" ", "+");
+
+//    QEventLoop eventLoop;
+//    QNetworkAccessManager mgr;
+//    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+
+//    QUrl u = QUrl("https://api.vk.com/method/messages.send?&random_id=" + QString::number(Variables::getRandom())
+//                  + "&peer_id=" + QString::number(Controller::peer_id_second_thread)
+//                  + "&message=" + message
+//                  + "&attachment=" + attachment
+//                  + "&access_token=" + Variables::token
+//                  + "&v=5.57");
+
+//    QNetworkRequest req( u );
+//    QNetworkReply *reply = mgr.get(req);
+//    eventLoop.exec();
+
+//    if (reply->error() == QNetworkReply::NoError)
+//    {
+//        qDebug() << reply->readAll();
+//    }
+//    else
+//    {
+//        qDebug() << reply->errorString();
+//    }
+
+//    delete reply;
+//}
+
+//void Request::adultVideoSearch(QString video)
+//{
+//    QEventLoop eventLoop;
+//    QNetworkAccessManager mgr;
+//    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+
+//    QUrl u = QUrl("https://api.vk.com/method/video.search?q=" + video
+//                  + "&auto_complete=1"
+//                  + "&sort=2"
+//                  + "&adult=1"
+//                  + "&count=10"
+//                  + "&access_token=" + Variables::token
+//                  + "&v=5.57");
+
+//    QNetworkRequest req( u );
+//    QNetworkReply *reply = mgr.get(req);
+//    eventLoop.exec();
+
+//    if (reply->error() == QNetworkReply::NoError) {
+
+//        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+//        QJsonObject obj1 = doc.object();
+//        QJsonObject obj2 = obj1["response"].toObject();
+//        QJsonArray obj3 = obj2["items"].toArray();
+
+//        int count = obj3.size();
+//        long musics[count][2];
+//        QString attachment = "";
+
+//        for(int i = 0; i < count; i++)
+//        {
+//            QJsonObject obj4 = obj3[i].toObject();
+
+//            attachment.append("video");
+
+//            musics[i][0] = obj4["owner_id"].toDouble();
+
+//            attachment.append(QString::number(musics[i][0]));
+//            attachment.append("_");
+
+//            musics[i][1] = obj4["id"].toDouble();
+
+//            attachment.append(QString::number(musics[i][1]));
+//            attachment.append(",");
+//        }
+
+//        QString message = "По вашему запросу \'" + video + "\' найдено " + QString::number(count) + " видео";
+//        Request::sendMessageWithAttachment(attachment, message);
+//    }
+
+//    else
+//    {
+//        qDebug() << "Fail to send message with video attachment";
+//    }
 
-}
+//}
 
-void Request::videoSearch(QString video)
-{
-    QEventLoop eventLoop;
-    QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+//void Request::videoSearch(QString video)
+//{
+//    QEventLoop eventLoop;
+//    QNetworkAccessManager mgr;
+//    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
-    QUrl u = QUrl("https://api.vk.com/method/video.search?q=" + video
-                  + "&auto_complete=1"
-                  + "&sort=2"
-                  + "&adult=0"
-                  + "&count=10"
-                  + "&access_token=" + Variables::token
-                  + "&v=5.57");
+//    QUrl u = QUrl("https://api.vk.com/method/video.search?q=" + video
+//                  + "&auto_complete=1"
+//                  + "&sort=2"
+//                  + "&adult=0"
+//                  + "&count=10"
+//                  + "&access_token=" + Variables::token
+//                  + "&v=5.57");
 
-    QNetworkRequest req( u );
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec();
+//    QNetworkRequest req( u );
+//    QNetworkReply *reply = mgr.get(req);
+//    eventLoop.exec();
 
-    if (reply->error() == QNetworkReply::NoError) {
+//    if (reply->error() == QNetworkReply::NoError) {
 
-        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-        QJsonObject obj1 = doc.object();
-        QJsonObject obj2 = obj1["response"].toObject();
-        QJsonArray obj3 = obj2["items"].toArray();
+//        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+//        QJsonObject obj1 = doc.object();
+//        QJsonObject obj2 = obj1["response"].toObject();
+//        QJsonArray obj3 = obj2["items"].toArray();
 
-        int count = obj3.size();
-        long musics[count][2];
-        QString attachment = "";
+//        int count = obj3.size();
+//        long musics[count][2];
+//        QString attachment = "";
 
-        for(int i = 0; i < count; i++)
-        {
-            QJsonObject obj4 = obj3[i].toObject();
+//        for(int i = 0; i < count; i++)
+//        {
+//            QJsonObject obj4 = obj3[i].toObject();
 
-            attachment.append("video");
+//            attachment.append("video");
 
-            musics[i][0] = obj4["owner_id"].toDouble();
+//            musics[i][0] = obj4["owner_id"].toDouble();
 
-            attachment.append(QString::number(musics[i][0]));
-            attachment.append("_");
+//            attachment.append(QString::number(musics[i][0]));
+//            attachment.append("_");
 
-            musics[i][1] = obj4["id"].toDouble();
+//            musics[i][1] = obj4["id"].toDouble();
 
-            attachment.append(QString::number(musics[i][1]));
-            attachment.append(",");
-        }
+//            attachment.append(QString::number(musics[i][1]));
+//            attachment.append(",");
+//        }
 
-        QString message = "По вашему запросу \'" + video + "\' найдено " + QString::number(count) + " видео";
-        Request::sendMessageWithAttachment(attachment, message);
-    }
+//        QString message = "По вашему запросу \'" + video + "\' найдено " + QString::number(count) + " видео";
+//        Request::sendMessageWithAttachment(attachment, message);
+//    }
 
-    else
-    {
-        qDebug() << "Fail to send message with video attachment";
-    }
+//    else
+//    {
+//        qDebug() << "Fail to send message with video attachment";
+//    }
 
-}
+//}
 
-void Request::docSearch(QString docName)
-{
-    QEventLoop eventLoop;
-    QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+//void Request::docSearch(QString docName)
+//{
+//    QEventLoop eventLoop;
+//    QNetworkAccessManager mgr;
+//    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
-    QUrl u = QUrl("https://api.vk.com/method/docs.search?q=" + docName
-                  + "&count=10"
-                  + "&access_token=" + Variables::token
-                  + "&v=5.57");
+//    QUrl u = QUrl("https://api.vk.com/method/docs.search?q=" + docName
+//                  + "&count=10"
+//                  + "&access_token=" + Variables::token
+//                  + "&v=5.57");
 
-    QNetworkRequest req( u );
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec();
+//    QNetworkRequest req( u );
+//    QNetworkReply *reply = mgr.get(req);
+//    eventLoop.exec();
 
-    if (reply->error() == QNetworkReply::NoError) {
+//    if (reply->error() == QNetworkReply::NoError) {
 
-        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-        QJsonObject obj1 = doc.object();
-        QJsonObject obj2 = obj1["response"].toObject();
-        QJsonArray obj3 = obj2["items"].toArray();
+//        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+//        QJsonObject obj1 = doc.object();
+//        QJsonObject obj2 = obj1["response"].toObject();
+//        QJsonArray obj3 = obj2["items"].toArray();
 
-        int count = obj3.size();
+//        int count = obj3.size();
 
-        if(count == 0)
-        {
-            Request::sendMessage("Документов по запросу " + docName + " не найдено");
-            return;
-        }
+//        if(count == 0)
+//        {
+//            Request::sendMessage("Документов по запросу " + docName + " не найдено");
+//            return;
+//        }
 
 
-        long musics[count][2];
-        QString attachment = "";
+//        long musics[count][2];
+//        QString attachment = "";
 
-        for(int i = 0; i < count; i++)
-        {
-            QJsonObject obj4 = obj3[i].toObject();
+//        for(int i = 0; i < count; i++)
+//        {
+//            QJsonObject obj4 = obj3[i].toObject();
 
-            attachment.append("doc");
+//            attachment.append("doc");
 
-            musics[i][0] = obj4["owner_id"].toDouble();
+//            musics[i][0] = obj4["owner_id"].toDouble();
 
-            attachment.append(QString::number(musics[i][0]));
-            attachment.append("_");
+//            attachment.append(QString::number(musics[i][0]));
+//            attachment.append("_");
 
-            musics[i][1] = obj4["id"].toDouble();
+//            musics[i][1] = obj4["id"].toDouble();
 
-            attachment.append(QString::number(musics[i][1]));
-            attachment.append(",");
-        }
+//            attachment.append(QString::number(musics[i][1]));
+//            attachment.append(",");
+//        }
 
-        QString message = "По вашему запросу \'" + docName + "\' найдено " + QString::number(count) + " документов";
-        Request::sendMessageWithAttachment(attachment, message);
-    }
+//        QString message = "По вашему запросу \'" + docName + "\' найдено " + QString::number(count) + " документов";
+//        Request::sendMessageWithAttachment(attachment, message);
+//    }
 
-    else
-    {
-        qDebug() << "Fail to send message with video attachment";
-    }
-}
+//    else
+//    {
+//        qDebug() << "Fail to send message with video attachment";
+//    }
+//}
 
-void Request::gifSearch(QString gifName)
-{
-    QEventLoop eventLoop;
-    QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+//void Request::gifSearch(QString gifName)
+//{
+//    QEventLoop eventLoop;
+//    QNetworkAccessManager mgr;
+//    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
-    QUrl u = QUrl("https://api.vk.com/method/docs.search?q=" + gifName
-                  + "&count=100"
-                  + "&access_token=" + Variables::token
-                  + "&v=5.57");
+//    QUrl u = QUrl("https://api.vk.com/method/docs.search?q=" + gifName
+//                  + "&count=100"
+//                  + "&access_token=" + Variables::token
+//                  + "&v=5.57");
 
-    QNetworkRequest req( u );
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec();
+//    QNetworkRequest req( u );
+//    QNetworkReply *reply = mgr.get(req);
+//    eventLoop.exec();
 
-    if (reply->error() == QNetworkReply::NoError) {
+//    if (reply->error() == QNetworkReply::NoError) {
 
-//        qDebug() << "Success sended request gifSearch";
+////        qDebug() << "Success sended request gifSearch";
 
-        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-        QJsonObject obj1 = doc.object();
-        QJsonObject obj2 = obj1["response"].toObject();
-        QJsonArray obj3 = obj2["items"].toArray();
+//        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+//        QJsonObject obj1 = doc.object();
+//        QJsonObject obj2 = obj1["response"].toObject();
+//        QJsonArray obj3 = obj2["items"].toArray();
 
-        int count = obj3.size();
+//        int count = obj3.size();
 
-        if(count == 0)
-        {
-            Request::sendMessage("Гифок по запросу " + gifName + " не найдено");
-            return;
-        }
+//        if(count == 0)
+//        {
+//            Request::sendMessage("Гифок по запросу " + gifName + " не найдено");
+//            return;
+//        }
 
 
-        int size = 0;
-        for(int i = 0; i < count; i++)
-        {
-            QJsonObject obj4 = obj3[i].toObject();
+//        int size = 0;
+//        for(int i = 0; i < count; i++)
+//        {
+//            QJsonObject obj4 = obj3[i].toObject();
 
-            if (obj4["ext"] == "gif")
-                size++;
-        }
+//            if (obj4["ext"] == "gif")
+//                size++;
+//        }
 
-        qDebug() << size;
+//        qDebug() << size;
 
-        int countOfGif = 0;
+//        int countOfGif = 0;
 
-        QString attachment = "";
-        long gifs[size][2];
+//        QString attachment = "";
+//        long gifs[size][2];
 
-        for(int i = 0; i < size; i++)
-        {
-            QJsonObject obj4 = obj3[i].toObject();
+//        for(int i = 0; i < size; i++)
+//        {
+//            QJsonObject obj4 = obj3[i].toObject();
 
-            if (obj4["ext"] == "gif")
-            {
-                attachment.append("doc");
+//            if (obj4["ext"] == "gif")
+//            {
+//                attachment.append("doc");
 
-                gifs[i][0] = obj4["owner_id"].toDouble();
+//                gifs[i][0] = obj4["owner_id"].toDouble();
 
-                attachment.append(QString::number(gifs[i][0]));
-                attachment.append("_");
+//                attachment.append(QString::number(gifs[i][0]));
+//                attachment.append("_");
 
-                gifs[i][1] = obj4["id"].toDouble();
+//                gifs[i][1] = obj4["id"].toDouble();
 
-                attachment.append(QString::number(gifs[i][1]));
-                attachment.append(",");
+//                attachment.append(QString::number(gifs[i][1]));
+//                attachment.append(",");
 
-                countOfGif++;
-            }
+//                countOfGif++;
+//            }
 
-            else
-                continue;
-        }
+//            else
+//                continue;
+//        }
 
-        qDebug() << "attachment = " << attachment;
+//        qDebug() << "attachment = " << attachment;
 
-        QString message = "По вашему запросу \'" + gifName + "\' найдено "
-                + QString::number(size) + " документов, из них " + QString::number(countOfGif) + " гифок";
+//        QString message = "По вашему запросу \'" + gifName + "\' найдено "
+//                + QString::number(size) + " документов, из них " + QString::number(countOfGif) + " гифок";
 
-        Request::sendMessageWithAttachment(attachment, message);
-    }
+//        Request::sendMessageWithAttachment(attachment, message);
+//    }
 
-    else
-        qDebug() << "Fail to send message with video attachment";
-}
+//    else
+//        qDebug() << "Fail to send message with video attachment";
+//}
 
