@@ -34,8 +34,6 @@ private slots:
 
     void on_pushSetToken_clicked();
 
-//    void on_pushButton_clicked();
-
     void on_pushDownload_clicked();
 
     void on_pushSelectPath_clicked();

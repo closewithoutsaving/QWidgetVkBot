@@ -69,17 +69,6 @@ void MainWindow::on_pushSetToken_clicked()
     ui->listLog->addItem("token has been pasted");
 }
 
-//void MainWindow::on_pushButton_clicked()
-//{
-
-////get access token
-////https://oauth.vk.com/authorize?client_id=5512525&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=
-////messages,video,docs,offline&response_type=token&v=5.57
-
-//    Variables::token = "f88413626f9923ecec6f5fdf2f6158c4d0012ce5d3ff5ec1d3823b34aedd6b28617f85c05089d23c2012d";
-//    ui->listLog->addItem("using default token");
-//}
-
 void MainWindow::on_pushDownload_clicked()
 {
 
