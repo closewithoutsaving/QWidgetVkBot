@@ -1,8 +1,19 @@
 #ifndef VIDEO_H
 #define VIDEO_H
 
+#include <QEventLoop>
+#include <QNetworkAccessManager>
+#include <QObject>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrl>
 #include <QString>
-#include <request.h>
+#include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+
+#include "request.h"
 
 class Video
 {
