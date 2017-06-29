@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    getTokenRequest = "https://oauth.vk.com/authorize?client_id=5938020&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=messages,video,docs,offline&response_type=token&v=5.57";
-
     botThread = new VkBotThread();
     down = new Downloader();
     QThreadPool::globalInstance()->start(botThread);
@@ -132,7 +130,7 @@ void MainWindow::showTime()
 
 void MainWindow::on_pushCopyRequest_clicked()
 {
-    clipboard->setText(getTokenRequest);
+    clipboard->setText("https://oauth.vk.com/authorize?client_id=5938020&display=page&redirect_uri=https://oauth.vk.com/authorize&scope=messages,video,docs,offline&response_type=token&v=5.57");
     ui->listLog->addItem("token request has been copied");
 }
 

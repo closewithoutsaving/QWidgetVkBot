@@ -15,23 +15,3 @@ void Controller::sendMessageFromTextField(const QString &message)
 
     request.sendMessage(message);
 }
-
-void Controller::changeId(int index)
-{
-    switch (index) {
-    case 0:
-        Controller::peer_id = 279100995;
-        qDebug() << Controller::peer_id;
-        break;
-    case 1:
-        Controller::peer_id = 61227081;
-        qDebug() << Controller::peer_id;
-        break;
-    case 2:
-        Controller::peer_id = 2000000002;
-        qDebug() << Controller::peer_id;
-        break;
-    default:
-        break;
-    }
-}

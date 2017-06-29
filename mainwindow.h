@@ -61,7 +61,6 @@ private:
     QString path;
     QString name;
     QString type;
-    QString getTokenRequest;
 };
 
 #endif // MAINWINDOW_H

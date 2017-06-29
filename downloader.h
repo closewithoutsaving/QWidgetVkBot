@@ -17,7 +17,6 @@ class Downloader
 {
 public:
     Downloader();
-
     QString download(QString url, QString path);
 };
 

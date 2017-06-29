@@ -31,7 +31,7 @@ void Video::videoSearch(QString video)
         QJsonArray obj3 = obj2["items"].toArray();
 
         int count = obj3.size();
-        long musics[count][2];
+        long videos[count][2];
         QString attachment = "";
 
         for(int i = 0; i < count; i++)
@@ -40,14 +40,14 @@ void Video::videoSearch(QString video)
 
             attachment.append("video");
 
-            musics[i][0] = obj4["owner_id"].toDouble();
+            videos[i][0] = obj4["owner_id"].toDouble();
 
-            attachment.append(QString::number(musics[i][0]));
+            attachment.append(QString::number(videos[i][0]));
             attachment.append("_");
 
-            musics[i][1] = obj4["id"].toDouble();
+            videos[i][1] = obj4["id"].toDouble();
 
-            attachment.append(QString::number(musics[i][1]));
+            attachment.append(QString::number(videos[i][1]));
             attachment.append(",");
         }
 
@@ -60,6 +60,7 @@ void Video::videoSearch(QString video)
         qDebug() << "Fail to send message with video attachment";
     }
 
+    delete reply;
 }
 
 void Video::adultVideoSearch(QString video)
@@ -88,7 +89,7 @@ void Video::adultVideoSearch(QString video)
         QJsonArray obj3 = obj2["items"].toArray();
 
         int count = obj3.size();
-        long musics[count][2];
+        long videos[count][2];
         QString attachment = "";
 
         for(int i = 0; i < count; i++)
@@ -97,14 +98,14 @@ void Video::adultVideoSearch(QString video)
 
             attachment.append("video");
 
-            musics[i][0] = obj4["owner_id"].toDouble();
+            videos[i][0] = obj4["owner_id"].toDouble();
 
-            attachment.append(QString::number(musics[i][0]));
+            attachment.append(QString::number(videos[i][0]));
             attachment.append("_");
 
-            musics[i][1] = obj4["id"].toDouble();
+            videos[i][1] = obj4["id"].toDouble();
 
-            attachment.append(QString::number(musics[i][1]));
+            attachment.append(QString::number(videos[i][1]));
             attachment.append(",");
         }
 
@@ -117,6 +118,7 @@ void Video::adultVideoSearch(QString video)
         qDebug() << "Fail to send message with video attachment";
     }
 
+    delete reply;
 }
 
 void Video::sendMessageWithAttachment(QString attachment, QString message)

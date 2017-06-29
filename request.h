@@ -24,14 +24,6 @@ public:
     void sendRequest();
     void sendMessage(QString message);
     void messagesGetDialogs();
-
-//    void videoSearch(QString name);
-//    void adultVideoSearch(QString name);
-//    void docSearch(QString docName);
-//    void gifSearch(QString name);
-
-//    void sendMessageWithAttachment(QString attachment);
-//    void sendMessageWithAttachment(QString attachment, QString message);
 };
 
 #endif // REQUEST_H

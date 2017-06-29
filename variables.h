@@ -8,9 +8,7 @@ class Variables
 {
 public:
     Variables();
-
     static QString token;
-
     static int getRandom();
 };
 

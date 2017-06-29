@@ -10,7 +10,6 @@ class Parser
 {
 public:
     Parser();
-
     void parseMassege(QString message);
 };
 

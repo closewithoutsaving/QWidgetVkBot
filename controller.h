@@ -21,7 +21,6 @@ signals:
 
 public slots:
     void sendMessageFromTextField(const QString &msg);
-    void changeId(int);
 
 };
 

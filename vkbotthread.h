@@ -11,9 +11,7 @@ class VkBotThread : public QRunnable
 {
 public:
     VkBotThread();
-
     static bool isSuspended;
-
     void run();
 };
 

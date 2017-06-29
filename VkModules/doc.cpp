@@ -36,7 +36,7 @@ void Doc::docSearch(QString docName)
         }
 
 
-        long musics[count][2];
+        long docs[count][2];
         QString attachment = "";
 
         for(int i = 0; i < count; i++)
@@ -45,14 +45,14 @@ void Doc::docSearch(QString docName)
 
             attachment.append("doc");
 
-            musics[i][0] = obj4["owner_id"].toDouble();
+            docs[i][0] = obj4["owner_id"].toDouble();
 
-            attachment.append(QString::number(musics[i][0]));
+            attachment.append(QString::number(docs[i][0]));
             attachment.append("_");
 
-            musics[i][1] = obj4["id"].toDouble();
+            docs[i][1] = obj4["id"].toDouble();
 
-            attachment.append(QString::number(musics[i][1]));
+            attachment.append(QString::number(docs[i][1]));
             attachment.append(",");
         }
 
@@ -64,6 +64,8 @@ void Doc::docSearch(QString docName)
     {
         qDebug() << "Fail to send message with video attachment";
     }
+
+    delete reply;
 }
 
 void Doc::sendMessage(QString message)

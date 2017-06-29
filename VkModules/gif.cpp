@@ -21,9 +21,6 @@ void Gif::searchGif(QString gifName)
     eventLoop.exec();
 
     if (reply->error() == QNetworkReply::NoError) {
-
-//        qDebug() << "Success sended request gifSearch";
-
         QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
         QJsonObject obj1 = doc.object();
         QJsonObject obj2 = obj1["response"].toObject();
@@ -88,7 +85,11 @@ void Gif::searchGif(QString gifName)
     }
 
     else
+    {
         qDebug() << "Fail to send message with video attachment";
+    }
+
+    delete reply;
 }
 
 void Gif::sendMessage(QString message)
